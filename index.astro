@@ -1,0 +1,304 @@
+---
+const title = "Stakater | Red Hat Growth Partner";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #E00000;
+  --dark: #0A0F1C;
+  --gray: #6B7280;
+  --light: #F5F7FA;
+  --gradient: linear-gradient(135deg, #E00000 0%, #7A0000 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: white;
+  color: var(--dark);
+}
+
+.slide-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+section {
+  height: 100vh;
+  padding: 100px 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 { font-size: 60px; font-weight: 800; line-height: 1.1; }
+h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; }
+h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+
+p  { font-size: 20px; color: var(--gray); max-width: 900px; }
+
+.highlight { color: var(--primary); font-weight: 700; }
+
+.section-light { background: var(--light); }
+
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 50px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  font-size: 18px;
+  z-index: 1000;
+}
+
+.nav-dots {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.nav-dots.visible { opacity: 1; }
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
+}
+
+.metric {
+  font-size: 70px;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta {
+  background: var(--gradient);
+  color: white;
+}
+
+.cta p { color: #ffe5e5; }
+
+.subtle-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(224,0,0,0.08), transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: float 12s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(40px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo">STAKATER</div>
+
+<div class="slide-container">
+  <div class="slides" id="slides">
+
+    <section>
+      <div class="subtle-bg"></div>
+      <div class="container">
+        <h1>From Subscription Sale<br/>To Platform Standardization<br/>To Portfolio Expansion</h1>
+        <br/>
+        <p>
+        We help Red Hat sales teams protect ARR, increase node consumption,
+        and turn installed OpenShift clusters into strategic, expanding platforms.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-light">
+      <div class="container">
+        <h2>Most OpenShift Accounts Don’t Fail.</h2>
+        <h2 class="highlight">They Just Stop Growing.</h2>
+        <br/>
+        <p>
+        Subscription sold. Cluster installed. Engagement ends.
+        Adoption slows. Expansion stalls.
+        </p>
+        <br/>
+        <p class="highlight">Installed ≠ Standardized ≠ Strategic</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>The Structural Gap</h2>
+        <br/>
+        <p>
+        Customers need continuous operational coaching,
+        governance models, internal enablement,
+        and workload acceleration.
+        </p>
+        <br/>
+        <p>
+        Without this, OpenShift remains tactical — not the enterprise platform it was meant to become.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-light">
+      <div class="container">
+        <h2>How We Drive Footprint Growth</h2>
+        <br/>
+        <div class="metric">4</div>
+        <p>Expansion vectors per strategic account</p>
+        <br/>
+        <p>
+        Increase workload density → More nodes<br/>
+        Introduce ODF → Storage subscription growth<br/>
+        Position AMQ Streams → Portfolio expansion<br/>
+        Standardize platform → Additional clusters
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Proven Expansion Stories</h2>
+        <br/>
+        <p><span class="highlight">ATG</span> – 7-year sustained OpenShift growth journey</p>
+        <p><span class="highlight">CSN</span> – Introduced ODF and expanding into AMQ Streams</p>
+        <p><span class="highlight">Windsor Region</span> – 1 → 2 clusters, added ODF and expanded stack</p>
+      </div>
+    </section>
+
+    <section class="section-light">
+      <div class="container">
+        <h2>8 Years of Strategic Red Hat Alignment</h2>
+        <br/>
+        <p>
+        Service Provider Program → CCSP → MSA → Specialized Partner
+        </p>
+        <br/>
+        <p class="highlight">
+        Our growth aligns directly with Red Hat’s subscription expansion.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Full Lifecycle Capability</h2>
+        <br/>
+        <p>
+        Day 0 – Architecture<br/>
+        Day 1 – Implementation<br/>
+        Day 2–1000 – Operational maturity & expansion
+        </p>
+        <br/>
+        <p class="highlight">Our differentiator is continuity.</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Let’s Close Sale 2, 3, and 4 Together</h2>
+        <br/>
+        <p>
+        If you see an account that isn’t expanding — that’s not a problem, it’s an opportunity.
+        </p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav-dots" id="navDots"></div>
+
+<script>
+const slides = document.getElementById('slides');
+const sections = document.querySelectorAll('section');
+const navDots = document.getElementById('navDots');
+
+let currentIndex = 0;
+
+sections.forEach((_, index) => {
+  const dot = document.createElement('div');
+  dot.classList.add('dot');
+  if(index === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(index));
+  navDots.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+function updateDots() {
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[currentIndex].classList.add('active');
+}
+
+function goToSlide(index) {
+  currentIndex = Math.max(0, Math.min(index, sections.length - 1));
+  slides.style.transform = `translateY(-${currentIndex * 100}vh)`;
+  updateDots();
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+  if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+});
+
+let mouseTimer;
+document.addEventListener('mousemove', () => {
+  navDots.classList.add('visible');
+  clearTimeout(mouseTimer);
+  mouseTimer = setTimeout(() => {
+    navDots.classList.remove('visible');
+  }, 2000);
+});
+</script>
+
+</body>
+</html>
