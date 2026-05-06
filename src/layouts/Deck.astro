@@ -1,0 +1,174 @@
+---
+interface Props {
+  title: string;
+  persona?: string;
+}
+const { title, persona } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style is:global>
+    :root {
+      --primary: #E00000;
+      --dark: #0A0F1C;
+      --gray: #6B7280;
+      --light: #F5F7FA;
+      --gradient: linear-gradient(135deg, #E00000 0%, #7A0000 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: white;
+      color: var(--dark);
+    }
+
+    .slide-container {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    section {
+      height: 100vh;
+      padding: 100px 60px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    h1 { font-size: 60px; font-weight: 800; line-height: 1.1; }
+    h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; }
+    p  { font-size: 20px; color: var(--gray); max-width: 900px; }
+
+    .highlight { color: var(--primary); font-weight: 700; }
+    .section-light { background: var(--light); }
+
+    .cta { background: var(--gradient); color: white; }
+    .cta p { color: #ffe5e5; }
+    .cta h1, .cta h2 { color: white; }
+
+    .deck-logo {
+      position: fixed;
+      top: 30px;
+      left: 50px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    .deck-back {
+      position: fixed;
+      top: 32px;
+      right: 50px;
+      font-size: 13px;
+      color: var(--gray);
+      text-decoration: none;
+      z-index: 1000;
+      letter-spacing: 0.5px;
+      opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .deck-back:hover { opacity: 1; color: var(--dark); }
+
+    .deck-persona {
+      position: fixed;
+      bottom: 30px;
+      left: 50px;
+      font-size: 11px;
+      color: var(--gray);
+      z-index: 1000;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+
+    .deck-counter {
+      position: fixed;
+      bottom: 30px;
+      right: 50px;
+      font-size: 13px;
+      color: var(--gray);
+      z-index: 1000;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deck-logo">STAKATER</div>
+  <a href="/" class="deck-back">← All Decks</a>
+  {persona && <div class="deck-persona">{persona}</div>}
+  <div class="deck-counter" id="counter"></div>
+
+  <div class="slide-container">
+    <div class="slides" id="slides">
+      <slot />
+    </div>
+  </div>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const sections = document.querySelectorAll('section');
+    const counter = document.getElementById('counter');
+    let currentIndex = 0;
+    let scrollLocked = false;
+
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, sections.length - 1));
+      slides.style.transform = `translateY(-${currentIndex * 100}vh)`;
+      counter.textContent = `${currentIndex + 1} / ${sections.length}`;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+      if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goToSlide(currentIndex - 1);
+    });
+
+    document.addEventListener('wheel', e => {
+      e.preventDefault();
+      if (scrollLocked) return;
+      scrollLocked = true;
+      if (e.deltaY > 0) goToSlide(currentIndex + 1);
+      else              goToSlide(currentIndex - 1);
+      setTimeout(() => { scrollLocked = false; }, 900);
+    }, { passive: false });
+
+    let touchStartY = 0;
+    document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+    document.addEventListener('touchend', e => {
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goToSlide(currentIndex + 1);
+        else          goToSlide(currentIndex - 1);
+      }
+    });
+
+    goToSlide(0);
+  </script>
+
+</body>
+</html>

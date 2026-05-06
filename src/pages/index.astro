@@ -1,877 +1,207 @@
 ---
-const title = "Stakater | Red Hat Growth Partner";
+const title = "Stakater | Red Hat Partner Decks";
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{title}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #E00000;
+      --dark: #0A0F1C;
+      --gray: #6B7280;
+      --light: #F5F7FA;
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
-:root {
-  --primary: #E00000;
-  --dark: #0A0F1C;
-  --gray: #6B7280;
-  --light: #F5F7FA;
-  --gradient: linear-gradient(135deg, #E00000 0%, #7A0000 100%);
-}
+    html, body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: white;
+      color: var(--dark);
+    }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    .header {
+      padding: 40px 60px;
+    }
 
-html, body {
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-  background: white;
-  color: var(--dark);
-}
+    .logo {
+      font-weight: 800;
+      letter-spacing: 3px;
+      font-size: 18px;
+    }
 
-.slide-container {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
-}
+    .hero {
+      padding: 60px 60px 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.slides {
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-}
+    .hero-label {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
 
-section {  
-  height: 100vh;
-  padding: 100px 60px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+    .hero p {
+      font-size: 20px;
+      color: var(--gray);
+      max-width: 520px;
+      line-height: 1.65;
+    }
 
-h1 { font-size: 60px; font-weight: 800; line-height: 1.1; }
-h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; }
-p  { font-size: 20px; color: var(--gray); max-width: 900px; }
+    .decks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+    }
 
-.highlight { color: var(--primary); font-weight: 700; }
-.section-light { background: var(--light); }
+    .deck-card {
+      background: var(--light);
+      border-radius: 20px;
+      padding: 48px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: block;
+      position: relative;
+      border: 2px solid transparent;
+    }
 
-.logo {
-  position: fixed;
-  top: 30px;
-  left: 50px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  font-size: 18px;
-  z-index: 1000;
-}
+    .deck-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.10);
+      border-color: var(--primary);
+    }
 
-.cta {
-  background: var(--gradient);
-  color: white;
-}
+    .deck-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
 
-.cta p { color: #ffe5e5; }
+    .deck-title {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
 
-</style>
+    .deck-desc {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .deck-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .deck-cta {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+    }
+
+    .deck-slides {
+      font-size: 13px;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    .exec-card {
+      background: var(--dark);
+      color: white;
+    }
+
+    .exec-card .deck-label  { color: rgba(255,255,255,0.35); }
+    .exec-card .deck-title  { color: white; }
+    .exec-card .deck-desc   { color: rgba(255,255,255,0.55); }
+    .exec-card .deck-cta    { color: #FF8080; }
+    .exec-card .deck-slides { color: rgba(255,255,255,0.35); }
+    .exec-card:hover        { border-color: #FF8080; }
+  </style>
 </head>
-
 <body>
 
-<div class="logo">STAKATER</div>
+  <div class="header">
+    <div class="logo">STAKATER</div>
+  </div>
 
-<div class="slide-container">
-  <div class="slides" id="slides">
+  <div class="hero">
+    <div class="hero-label">Red Hat Partner Decks</div>
+    <h1>Choose Your<br/>Audience.</h1>
+    <p>Each deck is tailored to a specific Red Hat persona — same story, their language, their priorities.</p>
+  </div>
 
-    <section class="intro">
-      <div class="container" style="text-align:center;">
+  <div class="decks-grid">
 
-        <h1>
-          From Installation
-          <br/>
-          To Expansion.
-        </h1>
-
-        <br/><br/>
-
-        <h2 style="color:#6B7280; font-weight:500;">
-          How Red Hat and Stakater scale OpenShift growth.
-        </h2>
-
+    <a href="/ae" class="deck-card">
+      <div class="deck-label">For →</div>
+      <div class="deck-title">Enterprise Account Executive</div>
+      <div class="deck-desc">ARR growth, account expansion, and protecting renewals in strategic named accounts. Speaks nodes, multi-year platforms, and renewal risk.</div>
+      <div class="deck-footer">
+        <span class="deck-cta">Open Deck →</span>
+        <span class="deck-slides">8 slides</span>
       </div>
-    </section>
+    </a>
 
-    <section>
-      <div class="container">
-        <h1>
-          Red Hat Wins the First Sale.<br/>
-          <span class="highlight">Stakater Help You Win the Next Three.</span>
-        </h1>
-
-        <br/><br/>
-
-        <h2>
-          From Subscription<br/>
-          To Standardization<br/>
-          To Expansion
-        </h2>
-
-        <br/>
-
-        <p>
-            We convert installed OpenShift clusters into expanding Red Hat platforms.
-        </p>
+    <a href="/commercial" class="deck-card">
+      <div class="deck-label">For →</div>
+      <div class="deck-title">Commercial Sales Executive</div>
+      <div class="deck-desc">Mid-market and SMB focus — portfolio pull-through, deal velocity, and upsell motion across ODF, ACM, ACS, and AMQ Streams.</div>
+      <div class="deck-footer">
+        <span class="deck-cta">Open Deck →</span>
+        <span class="deck-slides">8 slides</span>
       </div>
-    </section>
+    </a>
 
-    <section>
-      <div class="container" style="max-width:1000px;">
-
-        <!-- Headline -->
-        <h1>
-          Most OpenShift Accounts Don’t Fail.
-        </h1>
-
-        <h1 style="color:#E00000; margin-top:10px;">
-          They Just Stop Growing.
-        </h1>
-
-        <br/><br/>
-
-        <!-- Body -->
-        <div style="
-          font-size:22px;
-          line-height:1.6;
-          color:#2F3542;
-          max-width:700px;
-        ">
-          <p>
-            Subscription sold.<br/>
-            Cluster installed.
-          </p>
-
-          <br/>
-
-          <p>
-            Engagement ends.
-          </p>
-
-          <br/>
-
-          <p>
-            Adoption slows.<br/>
-            Dev & Ops friction increases.<br/>
-            Expansion conversations stall.
-          </p>
-        </div>
-
-        <br/><br/><br/>
-
-        <!-- Bottom Anchor -->
-        <h2 style="font-size:42px;">
-          Installed <span style="color:#E00000;">≠</span> 
-          Standardized <span style="color:#E00000;">≠</span> 
-          Strategic
-        </h2>
-
+    <a href="/partner" class="deck-card">
+      <div class="deck-label">For →</div>
+      <div class="deck-title">Partner Sales Executive</div>
+      <div class="deck-desc">Co-sell motion, deal registration, and building a joint pipeline through lifecycle ownership. Speaks sourced, influenced, and registered.</div>
+      <div class="deck-footer">
+        <span class="deck-cta">Open Deck →</span>
+        <span class="deck-slides">8 slides</span>
       </div>
-    </section>
+    </a>
 
-    <section>
-      <div class="container">
-
-        <!-- Title -->
-        <h1 style="text-align:center;">
-          The Structural Gap
-        </h1>
-
-        <br/>
-
-        <h2 style="
-          text-align:center;
-          max-width:900px;
-          margin:0 auto;
-          font-weight:600;
-        ">
-          OpenShift is rarely a technology problem.<br/>
-          It is a <span style="color:#E00000;">lifecycle problem.</span>
-        </h2>
-
-        <br/><br/><br/>
-
-        <div style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:80px;
-          align-items:start;
-        ">
-
-          <!-- LEFT COLUMN -->
-          <div style="
-            padding:30px;
-            background:#F4F6F9;
-            border-radius:8px;
-          ">
-
-            <h3 style="color:#6B7280; margin-bottom:20px;">
-              What Happens
-            </h3>
-
-            <p style="
-              font-size:20px;
-              line-height:1.6;
-              color:#374151;
-            ">
-              Red Hat sells a subscription.<br/>
-              Implementation succeeds.<br/>
-              The cluster goes live.
-            </p>
-
-          </div>
-
-          <!-- RIGHT COLUMN -->
-          <div style="
-            padding:30px;
-            border-left:4px solid #E00000;
-          ">
-
-            <h3 style="margin-bottom:20px;">
-              What’s Required for Growth
-            </h3>
-
-            <p style="
-              font-size:20px;
-              line-height:1.6;
-              color:#1F2937;
-            ">
-              Continuous operational coaching.<br/>
-              Clear governance models.<br/>
-              Dev & Ops alignment.<br/>
-              Internal platform enablement.<br/>
-              Accelerated workload onboarding.
-            </p>
-
-          </div>
-
-        </div>
-
-        <br/><br/><br/>
-
-        <!-- Final Anchor -->
-        <h2 style="
-          text-align:center;
-          font-size:42px;
-          font-weight:800;
-        ">
-          Without lifecycle ownership,<br/>
-          OpenShift remains 
-          <span style="color:#E00000;">tactical</span> — not strategic.
-        </h2>
-
+    <a href="/exec" class="deck-card exec-card">
+      <div class="deck-label">For →</div>
+      <div class="deck-title">VP / Regional Director</div>
+      <div class="deck-desc">Five slides. Numbers only. Strategic framing for leaders with limited time and high signal requirements.</div>
+      <div class="deck-footer">
+        <span class="deck-cta">Open Deck →</span>
+        <span class="deck-slides">5 slides</span>
       </div>
-    </section>
-
-    <section class="section-light">
-      <div class="container">
-
-        <h1>How Stakater Multiply Red Hat Footprint</h1>
-
-        <br/><br/>
-
-        <p>
-          We focus on three commercial levers inside every OpenShift account.
-        </p>
-
-        <br/><br/>
-
-        <h2>1. Workload Acceleration</h2>
-        <p>
-          More production workloads → More nodes → Higher ARR.
-        </p>
-
-        <br/>
-
-        <h2>2. Portfolio Pull-Through</h2>
-        <p>
-          ACM, ACS, ODF, AMQ Streams, API Gatewy → Additional Red Hat Products.
-        </p>
-
-        <br/>
-
-        <h2>3. Enterprise Standardization</h2>
-        <p>
-          From single cluster deployment to organization-wide platform adoption.
-        </p>
-
-        <br/><br/>
-
-        <h2 class="highlight">
-          Growth becomes engineered — not accidental.
-        </h2>
-
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-
-        <h1 style="text-align:center;">
-          What Expansion Actually Looks Like
-        </h1>
-
-        <br/><br/>
-
-        <div style="
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 40px;
-        ">
-
-          <!-- ATG -->
-          <div style="
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            position: relative;
-          ">
-            <!-- Red Accent Bar -->
-            <div style="
-              height: 4px;
-              background: #E00000;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              border-radius: 16px 16px 0 0;
-            "></div>
-
-            <!-- Logo -->
-            <div style="text-align:center; margin-bottom: 20px;">
-              <img src="/logos/atg.png" alt="ATG Logo" style="height:60px;">
-            </div>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Starting Point</strong><br/>
-            OpenShift installed.<br/>
-            Adoption gap.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">What We Drove</strong><br/>
-            Long-term lifecycle ownership.<br/>
-            Dev & Ops alignment.<br/>
-            Platform operational maturity.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Commercial Outcome</strong><br/>
-            7 years of sustained node growth.<br/>
-            OpenShift became strategic platform.</p>
-          </div>
-
-
-          <!-- CSN -->
-          <div style="
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            position: relative;
-          ">
-            <div style="
-              height: 4px;
-              background: #E00000;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              border-radius: 16px 16px 0 0;
-            "></div>
-
-            <div style="text-align:center; margin-bottom: 20px;">
-              <img src="/logos/csn.png" alt="CSN Logo" style="height:60px;">
-            </div>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Starting Point</strong><br/>
-            Subscription sold.<br/>
-            Post-implementation gap.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">What We Drove</strong><br/>
-            Platform maturity.<br/>
-            Workload acceleration.<br/>
-            Storage standardization.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Commercial Outcome</strong><br/>
-            Increased node consumption.<br/>
-            ODF adoption.<br/>
-            Expanded Red Hat portfolio footprint.</p>
-          </div>
-
-
-          <!-- Region Skåne -->
-          <div style="
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            position: relative;
-          ">
-            <div style="
-              height: 4px;
-              background: #E00000;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              border-radius: 16px 16px 0 0;
-            "></div>
-
-            <div style="text-align:center; margin-bottom: 20px;">
-              <img src="/logos/rs.png" alt="Region Skåne Logo" style="height:60px;">
-            </div>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Starting Point</strong><br/>
-            Initial OpenShift cluster.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">What We Drove</strong><br/>
-            Platform standardization.<br/>
-            Governance & scaling strategy.</p>
-
-            <br/>
-
-            <p><strong style="color:#E00000;">Commercial Outcome</strong><br/>
-            More nodes.<br/>
-            Additional clusters.<br/>
-            New Red Hat products adopted.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section-light">
-      <div class="container">
-
-        <h1 style="text-align:center;">
-          Strategic Red Hat Partnership
-        </h1>
-
-        <p style="text-align:center; margin-top:10px;">
-          8+ years of progressive ecosystem alignment
-        </p>
-
-        <br/><br/><br/>
-
-        <!-- Milestones -->
-        <div style="
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 60px;
-          text-align: center;
-        ">
-
-          <!-- 2018 -->
-          <div>
-            <div style="
-              font-size: 48px;
-              font-weight: 800;
-              color: #E00000;
-              margin-bottom: 10px;
-            ">2018</div>
-
-            <h3>Red Hat Solution Provider</h3>
-
-            <p>
-              Entry into the Red Hat partner ecosystem.<br/>
-              Commercial alignment with subscription model.
-            </p>
-          </div>
-
-
-          <!-- 2022 -->
-          <div>
-            <div style="
-              font-size: 48px;
-              font-weight: 800;
-              color: #E00000;
-              margin-bottom: 10px;
-            ">2022</div>
-
-            <h3>Red Hat CCSP Partner</h3>
-
-            <p>
-              Certified Cloud & Service Provider.<br/>
-              Lifecycle management and hosted OpenShift capability.
-            </p>
-          </div>
-
-
-          <!-- 2025 -->
-          <div>
-            <div style="
-              font-size: 48px;
-              font-weight: 800;
-              color: #E00000;
-              margin-bottom: 10px;
-            ">2025</div>
-
-            <h3>Specialized Partner – Container Management</h3>
-
-            <p>
-              Recognized technical specialization in OpenShift and container platforms.
-            </p>
-          </div>
-
-        </div>
-
-
-        <br/><br/><br/><br/>
-
-        <!-- Certification Section -->
-        <div style="text-align:center; max-width:900px; margin:0 auto;">
-
-          <h2>Certified Expertise</h2>
-
-          <br/>
-
-          <p>
-            Certified OpenShift Engineers<br/>
-            Red Hat Certified Engineers (RHCE)<br/>
-            Deep lifecycle experience across architecture, implementation, and operations
-          </p>
-
-          <br/><br/>
-
-          <h2 class="highlight">
-            Our evolution mirrors Red Hat’s platform strategy.
-          </h2>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-
-        <!-- Title -->
-        <h1 style="text-align:center;">
-          Stakater’s Full Lifecycle Capability
-        </h1>
-
-        <p style="
-          text-align:center;
-          font-size:20px;
-          color:#6B7280;
-          margin-top:10px;
-        ">
-          From architecture to sustained platform expansion
-        </p>
-
-        <br/><br/><br/>
-
-        <!-- Lifecycle Grid -->
-        <div style="
-          display:grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap:40px;
-          text-align:center;
-          align-items:start;
-        ">
-
-          <!-- Design -->
-          <div>
-            <h2 style="color:#E00000;">Design</h2>
-            <p style="margin-top:15px; color:#374151;">
-              Architecture strategy<br/>
-              Platform blueprint<br/>
-              Enterprise OpenShift roadmap
-            </p>
-          </div>
-
-          <!-- Deploy -->
-          <div>
-            <h2 style="color:#E00000;">Deploy</h2>
-            <p style="margin-top:15px; color:#374151;">
-              OpenShift implementation<br/>
-              Cluster configuration<br/>
-              Secure production rollout
-            </p>
-          </div>
-
-          <!-- Operate -->
-          <div>
-            <h2 style="color:#E00000;">Operate</h2>
-            <p style="margin-top:15px; color:#374151;">
-              Governance models<br/>
-              Dev & Ops enablement<br/>
-              Platform operational maturity
-            </p>
-          </div>
-
-          <!-- Expand -->
-          <div>
-            <h2 style="color:#E00000;">Expand</h2>
-            <p style="margin-top:15px; color:#374151;">
-              Workload acceleration<br/>
-              Portfolio adoption (ODF, AMQ, ACM, ACS)<br/>
-              Multi-cluster standardization
-            </p>
-          </div>
-
-        </div>
-
-        <br/><br/><br/>
-
-        <!-- Strategic Anchor -->
-        <h2 style="
-          text-align:center;
-          font-size:42px;
-          font-weight:800;
-          line-height:1.3;
-        ">
-          Installation creates capability.<br/>
-          <span style="color:#E00000;">
-            Stakater lifecycle ownership creates growth.
-          </span>
-        </h2>
-
-      </div>
-    </section>
-
-
-    <section class="section-light">
-      <div class="container">
-
-        <h1 style="text-align:center;">
-          Why Stakater Is Structurally Different
-        </h1>
-
-        <br/><br/>
-
-        <div style="
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 40px;
-          text-align: center;
-        ">
-
-          <!-- Engineering DNA -->
-          <div>
-            <h2 style="color:#E00000;">Engineering DNA</h2>
-            <p>
-              Developers turned platform engineers.<br/>
-              RHCEs & OpenShift specialists.<br/>
-              Deep Kubernetes DNA; not generic consultants.
-            </p>
-          </div>
-
-          <!-- Open Source Credibility -->
-          <div>
-            <h2 style="color:#E00000;">Open Source Footprint</h2>
-            <p>
-              15K+ GitHub stars.<br/>
-              Widely adopted Kubernetes tooling.
-            </p>
-          </div>
-
-          <!-- Operators -->
-          <div>
-            <h2 style="color:#E00000;">Certified Operators</h2>
-            <p>
-              Production-grade OpenShift operators.<br/>
-              Native platform understanding.
-            </p>
-          </div>
-
-          <!-- We Operate a Cloud -->
-          <div>
-            <h2 style="color:#E00000;">We Run OpenShift</h2>
-            <p>
-              Stakater Cloud.<br/>
-              Managed OpenShift as our core business.
-            </p>
-          </div>
-
-        </div>
-
-        <br/><br/>
-
-        <div style="text-align:center;">
-          <h2 class="highlight">
-            Not a project integrator. A platform growth multiplier.
-          </h2>
-        </div>
-
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-
-        <!-- Title -->
-        <h1 style="text-align:center;">
-          Where Stakater Creates Leverage
-        </h1>
-
-        <p style="
-          text-align:center;
-          margin-top:10px;
-          color:#6B7280;
-          font-size:20px;
-        ">
-          Day 0 or Day 1000 — we engineer growth.
-        </p>
-
-        <br/><br/><br/>
-
-        <div style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:60px;
-          align-items:start;
-        ">
-
-          <!-- LEFT COLUMN -->
-          <div style="
-            background:#F7F9FC;
-            padding:40px;
-            border-radius:12px;
-          ">
-
-            <h2 style="margin-bottom:30px;">
-              Early Lifecycle Engagement
-            </h2>
-
-            <div style="margin-bottom:25px;">
-              <strong style="color:#E00000;">New OpenShift Accounts</strong>
-              <p style="margin-top:6px; color:#374151;">
-                Architecture definition. Platform blueprinting.
-                Designing for expansion from day one.
-              </p>
-            </div>
-
-            <div style="margin-bottom:25px;">
-              <strong style="color:#E00000;">During Implementation</strong>
-              <p style="margin-top:6px; color:#374151;">
-                Production rollout. Governance setup.
-                Workload onboarding strategy.
-              </p>
-            </div>
-
-            <div>
-              <strong style="color:#E00000;">Early Platform Standardization</strong>
-              <p style="margin-top:6px; color:#374151;">
-                Prevent fragmentation. Align Dev & Ops early.
-                Build expansion runway.
-              </p>
-            </div>
-
-          </div>
-
-          <!-- RIGHT COLUMN -->
-          <div style="
-            padding:40px;
-            border-left:4px solid #E00000;
-          ">
-
-            <h2 style="margin-bottom:30px;">
-              Growth & Expansion Moments
-            </h2>
-
-            <div style="margin-bottom:25px;">
-              <strong style="color:#E00000;">Installed but Not Expanding</strong>
-              <p style="margin-top:6px; color:#374151;">
-                Nodes flat. No portfolio adoption.
-                Platform not scaling internally.
-              </p>
-            </div>
-
-            <div style="margin-bottom:25px;">
-              <strong style="color:#E00000;">Before Renewal or Portfolio Expansion</strong>
-              <p style="margin-top:6px; color:#374151;">
-                Strengthen positioning.
-                Introduce ACM, ACS, ODF, AMQ, or additional clusters.
-              </p>
-            </div>
-
-            <div>
-              <strong style="color:#E00000;">Enterprise-Wide Strategy</strong>
-              <p style="margin-top:6px; color:#374151;">
-                From isolated clusters to organization-wide standardization.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container" style="text-align:center;">
-
-        <h1>
-          Let’s Win Beyond the First Sale.
-        </h1>
-
-        <br/><br/>
-
-        <h2>
-          Subscription is the starting point.<br/>
-          Platform growth is the strategy.
-        </h2>
-
-        <br/><br/><br/>
-
-        <h1 style="font-weight:900;">
-          Let’s Close Sale 2, 3 and 4 — Together.
-        </h1>
-
-      </div>
-    </section>
+    </a>
 
   </div>
-</div>
-
-<script>
-const slides = document.getElementById('slides');
-const sections = document.querySelectorAll('section');
-
-let currentIndex = 0;
-
-function goToSlide(index) {
-  currentIndex = Math.max(0, Math.min(index, sections.length - 1));
-  slides.style.transform = `translateY(-${currentIndex * 100}vh)`;
-}
-
-document.addEventListener('keydown', e => {
-  if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goToSlide(currentIndex + 1);
-  if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
-});
-</script>
 
 </body>
 </html>
