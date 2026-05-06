@@ -3,6 +3,7 @@
 ## Working Style
 
 - Prefer surgical changes with limited side-effects. Touch only what the task requires; leave unrelated code, layouts, and copy alone. No opportunistic refactors or cleanups bundled in.
+- Speaker notes must stay in sync with slide content. Whenever a slide's copy, structure, or key message changes, update its `<aside class="notes">` to match — same session, same commit.
 
 ## Slide Design
 
