@@ -1,36 +1,11 @@
 ---
 import Deck from '../layouts/Deck.astro';
+import AboutStakater from '../components/slides/AboutStakater.astro';
 ---
 <Deck title="Stakater | Executive Overview" persona="VP / Regional Director">
 
-  <!-- 1. Who We Are -->
-  <section>
-    <div class="container">
-      <h1>
-        Stakater.<br/>
-        <span class="highlight">Red Hat's OpenShift Lifecycle Specialist.</span>
-      </h1>
-      <br/><br/>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:60px; margin-top:10px;">
-
-        <div>
-          <div style="font-size:52px; font-weight:800; color:#E00000; line-height:1;">8+</div>
-          <p style="margin-top:10px; font-size:19px; color:#374151;">Years in the Red Hat ecosystem</p>
-        </div>
-
-        <div>
-          <div style="font-size:52px; font-weight:800; color:#E00000; line-height:1;">CCSP</div>
-          <p style="margin-top:10px; font-size:19px; color:#374151;">Certified Cloud & Service Provider</p>
-        </div>
-
-        <div>
-          <div style="font-size:52px; font-weight:800; color:#E00000; line-height:1;">2025</div>
-          <p style="margin-top:10px; font-size:19px; color:#374151;">Container Management Specialization</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <!-- 1. About Stakater -->
+  <AboutStakater />
 
   <!-- 2. The Problem -->
   <section class="section-light">
