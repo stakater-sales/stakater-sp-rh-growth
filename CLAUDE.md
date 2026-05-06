@@ -45,3 +45,43 @@ Only accent (`.highlight`) the **core concept** each slide is introducing — th
 - Use "Cloud Orchestrator" in customer-facing notes, not "SCO"
 - Use "SCO" only in internal/shorthand contexts
 - Don't spoil later slides — each note should set up without revealing what comes next
+
+## Design system
+
+**Colours:**
+- Primary Orange: `#FF5623` (CTAs, highlights, accents, icons)
+- Secondary Orange: `#CC451C` (hover states)
+- Primary Purple: `#1A0D32` (dark sections, headings)
+- Secondary Purple: `#0A0614` (deepest dark sections)
+- BG Main: `#F5F5F5`
+- BG Alt: `#E8E8E8`
+- BG Card: `#D1CFD6`
+- Border: `#D9D9D9`
+- Muted text: `#5a5668`
+
+**Typography (Plus Jakarta Sans):**
+- H1: 56px Bold (mobile: 32px)
+- H2: 48px Bold (mobile: 28px)
+- H3: 32px Bold
+- H4: 24px SemiBold
+- H5: 20px SemiBold
+- H6: 18px SemiBold
+- P1: 24px Regular
+- P2: 18px Regular
+- P3: 16px Regular
+- P4: 14px Regular
+
+**Layout:**
+- Container max-width: 1200px
+- Desktop margins: 120px left/right → `.container-site`
+- Tablet margins: 40px
+- Mobile margins: 16px
+- Section padding: 144px top/bottom (mobile: 72px) → `.section-pad`
+- Card gap: 32px between cards
+- Gutter: 32px desktop, 24px tablet, 16px mobile
+
+**Rules:**
+- Orange ONLY for CTAs, highlights, icons, key accents — never large backgrounds
+- Purple for dark section backgrounds
+- BG Main/Alt for light section separation
+- Single CTA across the site: `Book a Call`
