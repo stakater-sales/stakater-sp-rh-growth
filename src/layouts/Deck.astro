@@ -79,8 +79,7 @@ const { title, persona } = Astro.props;
     /* ── Fixed chrome ── */
     .deck-logo {
       position: fixed; top: 30px; left: 50px;
-      font-weight: 800; letter-spacing: 3px; font-size: 18px;
-      z-index: 3000; font-family: 'Plus Jakarta Sans', sans-serif;
+      z-index: 3000;
     }
 
     .deck-back {
@@ -145,7 +144,7 @@ const { title, persona } = Astro.props;
 </head>
 <body>
 
-  <div class="deck-logo">STAKATER</div>
+  <div class="deck-logo"><img src="/logos/stakater-logo.png" alt="Stakater" style="height:32px;" /></div>
   <a href="/" class="deck-back">← All Decks</a>
   {persona && <div class="deck-persona">{persona}</div>}
   <div class="deck-counter" id="counter"></div>
