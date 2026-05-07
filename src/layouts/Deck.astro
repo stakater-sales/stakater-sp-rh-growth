@@ -145,6 +145,17 @@ const { title, persona } = Astro.props;
       color: rgba(255,255,255,0.36);
       margin-bottom: 10px;
     }
+
+    /* ── Step reveal animation ── */
+    .step-reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .step-reveal.step-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -182,16 +193,43 @@ const { title, persona } = Astro.props;
       notesBtn?.classList.toggle('on', notesOn);
     }
 
+    // Per-slide step tracking
+    const slideSteps = {};
+
+    function revealSteps(sectionIndex, stepNum) {
+      sections[sectionIndex].querySelectorAll('[data-step]').forEach(el => {
+        el.classList.toggle('step-visible', parseInt(el.dataset.step) <= stepNum);
+      });
+    }
+
     function goToSlide(index) {
       currentIndex = Math.max(0, Math.min(index, sections.length - 1));
       slides.style.transform = `translateY(-${currentIndex * 100}vh)`;
       counter.textContent = `${currentIndex + 1} / ${sections.length}`;
+      // Restore any steps already revealed on re-entry
+      revealSteps(currentIndex, slideSteps[currentIndex] || 0);
       syncNotes();
     }
 
+    function tryAdvance(direction) {
+      const max = parseInt(sections[currentIndex]?.dataset.steps || 0);
+      const cur = slideSteps[currentIndex] || 0;
+      if (direction > 0 && cur < max) {
+        slideSteps[currentIndex] = cur + 1;
+        revealSteps(currentIndex, slideSteps[currentIndex]);
+        return;
+      }
+      if (direction < 0 && cur > 0) {
+        slideSteps[currentIndex] = cur - 1;
+        revealSteps(currentIndex, slideSteps[currentIndex]);
+        return;
+      }
+      goToSlide(currentIndex + direction);
+    }
+
     document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goToSlide(currentIndex + 1);
-      if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goToSlide(currentIndex - 1);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') tryAdvance(1);
+      if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  tryAdvance(-1);
       if (e.key === 'n' || e.key === 'N') { notesOn = !notesOn; syncNotes(); }
     });
 
@@ -199,8 +237,8 @@ const { title, persona } = Astro.props;
       e.preventDefault();
       if (scrollLocked) return;
       scrollLocked = true;
-      if (e.deltaY > 0) goToSlide(currentIndex + 1);
-      else              goToSlide(currentIndex - 1);
+      if (e.deltaY > 0) tryAdvance(1);
+      else              tryAdvance(-1);
       setTimeout(() => { scrollLocked = false; }, 900);
     }, { passive: false });
 
@@ -209,8 +247,8 @@ const { title, persona } = Astro.props;
     document.addEventListener('touchend', e => {
       const diff = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(diff) > 50) {
-        if (diff > 0) goToSlide(currentIndex + 1);
-        else          goToSlide(currentIndex - 1);
+        if (diff > 0) tryAdvance(1);
+        else          tryAdvance(-1);
       }
     });
 
